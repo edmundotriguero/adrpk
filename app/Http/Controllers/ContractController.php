@@ -21,7 +21,7 @@ class ContractController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index() 
     {
         $contracts = Contract::where('state',1)->get();
         return view('contract.index',['contracts'=>$contracts]);
@@ -80,7 +80,7 @@ class ContractController extends Controller
             $cont = 0;
 
             while ($cont < count($product_list)) {
-                DB::update('insert into product_contract (product_id, contract_id)values(?,?)',
+                DB::insert('insert into product_contract (product_id, contract_id)values(?,?)',
                  [$product_list[$cont], $aux]);
                 $cont = $cont + 1;
             }

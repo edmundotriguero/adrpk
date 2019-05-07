@@ -16,11 +16,11 @@ Route::get('/', function () {
 });
 
 
-Route::resource('clients','ClientController');
+Route::resource('client','ClientController');
 Route::resource('category','CategoryController');
 Route::resource('location','LocationController');
 Route::resource('product','ProductController');
-
+Route::resource('video','VideoController');
 Route::resource('contract','ContractController');
 
 Route::get('sendMail/{message}','ContractController@sendEmail');

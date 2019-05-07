@@ -18,7 +18,7 @@ class CreateContractsTable extends Migration
             $table->date('start_date');
             $table->date('end_date')->nullable();
             $table->unsignedInteger('state');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->unsignedInteger('client_id');
             $table->timestamps();
 

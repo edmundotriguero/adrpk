@@ -5,8 +5,10 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 
 use App\Contract;
+use App\Video;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendReportMonth;
+use App\Mail\SendReportVideoDay;
 
 
 class ReminderEnd extends Command
@@ -47,12 +49,17 @@ class ReminderEnd extends Command
         $today = date('Y-m-d');
         
         $contracts = Contract::where('end_date',$today)->get();
-
+        $videos = Video::where('end_date',$today)->get();
        
        //dd($message);
         foreach ($contracts as $contract) {
             Mail::to('etriguero@rpk.com.bo')->send(new SendReportMonth($contract));
-            $this->info("se envio mail");
+            $this->info("se envio mail de contrato");
+        }
+
+        foreach ($videos as $video){
+            Mail::to('etriguero@rpk.com.bo')->send(new SendReportVideoDay($video));
+            $this->info("se envio los mail de video");
         }
         
         $this->info($today);

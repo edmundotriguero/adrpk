@@ -30,7 +30,7 @@
                             <input type="checkbox" id="drop-1">
         
                             <ul>
-                                <li><a href="{{url('clients')}}"><i class="fas fa-ghost"></i> Clientes</a></li>
+                                <li><a href="{{url('client')}}"><i class="fas fa-ghost"></i> Clientes</a></li>
                                 <li><a href="{{url('category')}}"><i class="fas fa-ghost"></i> Categorias</a></li>
                                 <li><a href="{{url('location')}}"><i class="fas fa-ghost"></i> Locaciones</a></li>
                                 <li><a href="{{url('product')}}"><i class="fas fa-ghost"></i> Productos</a></li>
@@ -48,7 +48,7 @@
                             <input type="checkbox" id="drop-2">
         
                             <ul>
-                                <li><a href=""><i class="fab fa-youtube"></i> Spots</a></li>
+                                <li><a href="{{url('video')}}"><i class="fab fa-youtube"></i> Videos</a></li>
                                 
                             </ul>
                         </li>

@@ -2,7 +2,7 @@
 @section("contenido")
 <div class="container">
 <div class=" row">
-<h6>Editar Cliente: {{$client->name}}</h6>
+<h6>Editar Video: {{$client->name}}</h6>
 
 </div>
 </div>
