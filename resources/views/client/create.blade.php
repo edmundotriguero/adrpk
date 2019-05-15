@@ -22,7 +22,7 @@
 </div>
 @endif
 
-<form method="post" action="/clients" autocomplete="on">
+<form method="post" action="/client" autocomplete="on">
 @csrf
   <div class="form-group row">
     <label for="name" class="col-sm-2 col-form-label">Nombre</label>

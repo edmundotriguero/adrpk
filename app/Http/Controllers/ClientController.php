@@ -48,7 +48,7 @@ class ClientController extends Controller
         $client->state = 1;
         $client->save();
 
-        return redirect('clients');
+        return redirect('client');
         
     }
 
@@ -92,7 +92,7 @@ class ClientController extends Controller
         $client->description = $request->get('description');
         $client->save();
 
-        return redirect('/clients');
+        return redirect('/client');
     }
 
     /**
@@ -106,6 +106,6 @@ class ClientController extends Controller
         $client = Client::find($id);
         $client->delete();
 
-        return redirect('/clients');
+        return redirect('/client');
     }
 }

@@ -32,7 +32,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="clients/{{$client->id}}" method="POST">
+        <form action="client/{{$client->id}}" method="POST">
         @csrf
         @method('DELETE')
         <p>Delete record?</p>

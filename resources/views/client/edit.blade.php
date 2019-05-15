@@ -20,7 +20,7 @@
 </div>
 @endif
 
-<form method="POST" action="/clients/{{$client->id}}" autocomplete="on">
+<form method="POST" action="/client/{{$client->id}}" autocomplete="on">
 @csrf
 @method('put')
   <div class="form-group row">
