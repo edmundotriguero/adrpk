@@ -1,7 +1,7 @@
 @extends("layout.admin")
 @section("contenido")
 <div class="container shadow p-3 mb-5 bg-white rounded">
-  <h5 class="card-title col-6 d-inline">Clientes</h5> <a href="clients/create" class="btn btn-outline-success"><i class="fas fa-plus-circle"></i>Nuevo</a>
+  <h5 class="card-title col-6 d-inline">Clientes</h5> <a href="client/create" class="btn btn-outline-success"><i class="fas fa-plus-circle"></i>Nuevo</a>
 </div>
 
 <div class="container">
