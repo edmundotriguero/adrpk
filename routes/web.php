@@ -27,5 +27,6 @@ Route::get('sendMail/{message}','ContractController@sendEmail');
 
 
 Auth::routes();
+// Route::auth();
 
-Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+Route::get('/home', 'HomeController@index')->name('home');
