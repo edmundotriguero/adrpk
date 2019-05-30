@@ -24,3 +24,8 @@ Route::resource('video','VideoController');
 Route::resource('contract','ContractController');
 
 Route::get('sendMail/{message}','ContractController@sendEmail');
+
+
+Auth::routes();
+
+Route::get('/dashboard', 'HomeController@index')->name('dashboard');

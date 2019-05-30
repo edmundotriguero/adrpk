@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,7 @@ class ClientController extends Controller
     public function index(Request $request)
     {
         $clients = Client::all();
-        return view('client.index',['clients'=>$clients]) ;
+        return view('client.index', ['clients' => $clients]);
     }
 
     /**
@@ -38,7 +42,7 @@ class ClientController extends Controller
     {
         $validData = $request->validate([
             'name' => 'required|min:3',
-            'description'=>'min:1'
+            'description' => 'min:1'
 
         ]);
 
@@ -49,7 +53,6 @@ class ClientController extends Controller
         $client->save();
 
         return redirect('client');
-        
     }
 
     /**

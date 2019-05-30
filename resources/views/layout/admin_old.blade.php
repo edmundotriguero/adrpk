@@ -82,7 +82,7 @@
     <section class="container ">
             <div class="card mt-2 shadow-sm" >
                     <div class="card-body">
-                      @yield("contenido")
+                            @yield("contenido")
                       
                     </div>
                   </div>

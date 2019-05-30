@@ -13,10 +13,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
-    <meta name="author" content="Łukasz Holeczek">
-    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-    <title>CoreUI Free Bootstrap Admin Template</title>
+    <meta name="description" content="RPK Srl. Sistema de administracion publicitaria">
+    <meta name="author" content="Edmundo Triguero">
+    
+    <title>RPK Admin</title>
     <!-- Icons-->
     <link href="{{asset('dist/node_modules/@coreui/icons/css/coreui-icons.min.css')}}" rel="stylesheet">
     <link href="{{asset('dist/node_modules/flag-icon-css/css/flag-icon.min.css')}}" rel="stylesheet">
@@ -33,8 +33,8 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <a class="navbar-brand" href="#">
-        <img class="navbar-brand-full" src="img/brand/logo.svg" width="89" height="25" alt="CoreUI Logo">
-        <img class="navbar-brand-minimized" src="img/brand/logo.svg" width="30" height="30" alt="CoreUI Logo">
+        <img class="navbar-brand-full" src="{{asset('dist/img/brand/logo.svg')}}" width="89" height="25" alt="RPK">
+        <img class="navbar-brand-minimized" src="{{asset('dist/img/brand/logo.svg')}}" width="30" height="30" alt="RPK">
       </a>
       <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
         <span class="navbar-toggler-icon"></span>
@@ -58,7 +58,7 @@
         
         <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-            <img class="img-avatar" src="img/avatars/6.jpg" alt="admin@bootstrapmaster.com">
+            <img class="img-avatar" src="{{asset('dist/img/avatars/6.jpg')}}" alt="admin@rpk.com.bo">
           </a>
           <div class="dropdown-menu dropdown-menu-right">
             <div class="dropdown-header text-center">
