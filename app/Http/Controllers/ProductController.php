@@ -31,8 +31,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $locations = Location::all();
-        $categories = Category::all();
+        $locations = Location::where('state',1)->get();
+        $categories = Category::where('state',1)->get();
 
         return view('product.create',[
             'locations'=>$locations,
@@ -92,12 +92,17 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
         $product = product::findOrFail($id);
 
+        $categories = Category::where('state',1)->get();
+        $locations = Location::where('state',1)->get();
+
         return view('product.edit', [
-            'product' => $product
+            'product' => $product,
+            'categories'=>$categories,
+            'locations'=>$locations
         ]);
     }
 
@@ -108,11 +113,32 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        $product = product::find($id);
-        $product->name = $request->get('name');
-        $product->description = $request->get('description');
+
+        $validData = $request->validate([
+            'name' => 'required|min:3',
+            'place' => 'required|min:3',
+            'image' => 'nullable',
+            'description'=>'min:1',
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date',
+            'category_id' => 'integer',
+            'location_id' => 'integer',
+
+        ]);
+        $product = Product::find($id);
+
+
+        $product->name = $validData['name'];
+        $product->place = $validData['place'];  
+        $product->image = $validData['image'];
+        $product->start_date = $validData['start_date'];
+        $product->end_date = $validData['end_date'];
+        $product->category_id = $validData['category_id'];
+        $product->location_id = $validData['location_id'];
+        $product->description = $validData['description'];
+        $product->state = $request->get('state');
         $product->save();
 
         return redirect('/product');

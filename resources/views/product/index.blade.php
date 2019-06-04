@@ -33,10 +33,10 @@
         <td> <span class="badge badge-danger">dis</span></td>
       @endif
       
-      <td>{{--
-      <a href="{{URL::action('ProductController@edit',$product->id)}}" class="ml-2" <i class="fas fa-edit"></i></a>
-      --}}
-      <a href="" data-target="#modal-delete-{{$product->id}}" data-toggle="modal"  data-whatever="@mdo"class="ml-2"><i class="fas fa-trash-alt"></i></a>
+      <td>
+      <a href="{{URL::action('ProductController@edit',$product->id)}}" class="ml-2"> <i class="fa fa-pencil-square-o"></i></a>
+     
+      <a href="" data-target="#modal-delete-{{$product->id}}" data-toggle="modal"  data-whatever="@mdo"class="ml-2"><i class="fa fa-trash-o"></i></a>
       </td>
 
     </tr>  
