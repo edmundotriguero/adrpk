@@ -213,6 +213,7 @@
     src="{{asset('dist/node_modules/@coreui/coreui-plugin-chartjs-custom-tooltips/dist/js/custom-tooltips.min.js')}}">
   </script>
   <!-- <script src="js/main.js"></script> -->
+  @stack('scripts')
 </body>
 
 </html>

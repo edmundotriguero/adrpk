@@ -27,7 +27,7 @@ class ContractController extends Controller
      */
     public function index() 
     {
-        $contracts = Contract::where('state',1)->get();
+        $contracts = Contract::where('state',1)->orderBy('end_date','desc')->get();
         return view('contract.index',['contracts'=>$contracts]);
     }
 
@@ -123,12 +123,17 @@ class ContractController extends Controller
      * @param  \App\Contract  $contract
      * @return \Illuminate\Http\Response
      */
-    public function edit(Contract $contract)
+    public function edit($id)
     {
         $contract = contract::findOrFail($id);
+        $products = Product::where('state',1)->get();
+        $clients = Client::where('state',1)->get();
+
 
         return view('contract.edit', [
-            'contract' => $contract
+            'contract' => $contract,
+            'products'=>$products,
+            'clients'=>$clients
         ]);
     }
 
@@ -139,14 +144,68 @@ class ContractController extends Controller
      * @param  \App\Contract  $contract
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contract $contract)
+    public function update($id, Request $request)
     {
-        $contract = contract::find($id);
-        $contract->name = $request->get('name');
-        $contract->description = $request->get('description');
-        $contract->save();
+        
+        DB::beginTransaction();
 
-        return redirect('/contract');
+        
+        $product_list = $request->get('product_list');
+        
+        //dd($product_list);
+        
+        $validData = $request->validate([
+            'client_id' => 'integer',
+            'description'=>'min:1',
+            'start_date' => 'date',
+            'end_date' => 'nullable|date'
+            ]);
+            
+        $contract = contract::find($id);
+        
+        $contract->client_id = $validData['client_id'];
+        $contract->start_date = $validData['start_date'];
+        $contract->end_date = $validData['end_date'];
+        
+        $contract->description = $validData['description'];
+        $contract->state = 1;
+        $contract->save();
+        
+
+        //  try {
+            
+            $product_list_origin = DB::table('product_contract')->select('product_id')->where('contract_id','=',$id)->get();
+            $product_new_origin = [];
+            
+            $product_new_list = [];
+           
+
+            for ($i=0; $i < count($product_list_origin); $i++) { 
+                for ($j=0; $j < count($product_list); $j++) { 
+                    if($product_list_origin[$i] != $product_list[$j]){
+                        array_push($product_new_origin,$product_list_origin[$i]);
+                        array_push($product_new_list,$product_list[$j]);
+                    }
+                }
+            }
+            dd($product_new_list);
+
+
+            
+            // dd($product_list);
+            $cont = 0;
+
+            while ($cont < count($product_list)) {
+                DB::insert('insert into product_contract (product_id, contract_id)values(?,?)',
+                 [$product_list[$cont], $id]);
+                $cont = $cont + 1;
+            }
+            // DB::commit();
+        // } catch (\Exception $e) {
+            // DB::rollback();
+        // }
+        return redirect('contract');
+
     }
 
     /**

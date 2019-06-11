@@ -1,7 +1,7 @@
 @extends("layout.admin")
 @section("contenido")
 <div class="container shadow p-3 mb-5 bg-white rounded">
-  <h5 class="card-title ">Orden de Pauta <a href="contract/create" class="btn btn-outline-success"><i class="fas fa-plus-circle"></i></a></h5> 
+  <h5 class="card-title ">Orden de Pauta. <a href="contract/create" class="btn btn-outline-success"> <i class="fa fa-plus"></i></a></h5> 
   
 </div>
 
@@ -33,11 +33,11 @@
         <td> <span class="badge badge-danger">dis</span></td>
       @endif
       
-      <td>{{--
-      <a href="{{URL::action('ContractController@edit',$contract->id)}}" class="ml-2" <i class="fas fa-edit"></i></a>
-      --}}
-      <a href="{{URL::action('ContractController@show',$contract->id)}}" class="ml-2"> <i class="far fa-eye"></i></i></a>
-      <a href="" data-target="#modal-delete-{{$contract->id}}" data-toggle="modal"  data-whatever="@mdo"class="ml-2"><i class="fas fa-trash-alt"></i></a>
+      <td>
+      <a href="{{URL::action('ContractController@edit',$contract->id)}}" class="ml-2"> <i class="fa fa-edit"></i></a>
+     
+      <a href="{{URL::action('ContractController@show',$contract->id)}}" class="ml-2"> <i class="fa fa-eye"></i></i></a>
+      <a href="" data-target="#modal-delete-{{$contract->id}}" data-toggle="modal"  data-whatever="@mdo"class="ml-2"><i class="fa fa-trash-o"></i></a>
       </td>
 
     </tr>  
