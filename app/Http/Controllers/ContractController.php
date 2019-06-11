@@ -150,10 +150,8 @@ class ContractController extends Controller
         DB::beginTransaction();
 
         
-        $product_list = $request->get('product_list');
-        
-        //dd($product_list);
-        
+        $product_list_new = $request->get('product_list');
+               
         $validData = $request->validate([
             'client_id' => 'integer',
             'description'=>'min:1',
@@ -172,38 +170,49 @@ class ContractController extends Controller
         $contract->save();
         
 
-        //  try {
+         try {
             
             $product_list_origin = DB::table('product_contract')->select('product_id')->where('contract_id','=',$id)->get();
-            $product_new_origin = [];
             
-            $product_new_list = [];
-           
+            
+            $product_list_delete = [];
+            $indice = 0;
+            $aux = false;
 
             for ($i=0; $i < count($product_list_origin); $i++) { 
-                for ($j=0; $j < count($product_list); $j++) { 
-                    if($product_list_origin[$i] != $product_list[$j]){
-                        array_push($product_new_origin,$product_list_origin[$i]);
-                        array_push($product_new_list,$product_list[$j]);
-                    }
+               
+                if (in_array($product_list_origin[$i]->product_id, $product_list_new)) {
+                    $aux = true;
+                    $indice = array_search($product_list_origin[$i]->product_id, $product_list_new, false);
+                    array_splice($product_list_new,$indice,1);
+                    // dd($indice);
+                } else{
+                    array_push($product_list_delete, $product_list_origin[$i]->product_id);
                 }
             }
-            dd($product_new_list);
-
-
             
-            // dd($product_list);
-            $cont = 0;
 
-            while ($cont < count($product_list)) {
+            $cont = 0;
+            $cont2 = 0;
+
+            while ($cont < count($product_list_new)) {
                 DB::insert('insert into product_contract (product_id, contract_id)values(?,?)',
-                 [$product_list[$cont], $id]);
+                 [$product_list_new[$cont], $id]);
                 $cont = $cont + 1;
             }
-            // DB::commit();
-        // } catch (\Exception $e) {
-            // DB::rollback();
-        // }
+
+            while ($cont2 < count($product_list_delete)) {
+                DB::delete('delete from product_contract where product_id = ? and  contract_id = ?',
+                 [$product_list_delete[$cont2], $id]);
+                $cont2 = $cont2 + 1;
+            }
+
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            dd("".$e);
+        }
         return redirect('contract');
 
     }
