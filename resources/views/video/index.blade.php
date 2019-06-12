@@ -1,7 +1,7 @@
 @extends("layout.admin")
 @section("contenido")
 <div class="container shadow p-3 mb-5 bg-white rounded">
-  <h5 class="card-title col-6 d-inline">Videos list </h5> <a href="video/create" class="btn btn-outline-success"><i class="fas fa-plus-circle"></i>Nuevo</a>
+  <h5 class="card-title col-6 d-inline">Videos list </h5> <a href="video/create" class="btn btn-outline-success"><i class="fa fa-plus-circle"></i>Nuevo</a>
 </div>
 
 <div class="container">
@@ -33,8 +33,8 @@
       <td>{{$video->end_date}}</td>
       {{-- <td>{{$video->description}}</td> --}}
       <th>
-      <a href="{{URL::action('VideoController@edit',$video->id)}}" class="ml-2"><i class="fas fa-edit"></i></a>
-      <a href="" data-target="#modal-delete-{{$video->id}}" data-toggle="modal"  data-whatever="@mdo"class="ml-2"><i class="fas fa-trash-alt"></i></a>
+      <a href="{{URL::action('VideoController@edit',$video->id)}}" class="ml-2"><i class="fa fa-edit"></i></a>
+      <a href="" data-target="#modal-delete-{{$video->id}}" data-toggle="modal"  data-whatever="@mdo"class="ml-2"><i class="fa fa-trash-o"></i></a>
       </th>
 
     </tr>  
